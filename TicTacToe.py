@@ -24,16 +24,77 @@ def btnClick(button): #padod visu pogu
 
 
 def checkWinner():
-    global checkWinner
+    global winner
     winner=False
-    if (btn1["text"=="X"] and btn2["text"]=="X" and btn3["text"]=="X" or btn4["text"=="X"] and btn5["text"]=="X" and btn6["text"]=="X" or btn7["text"=="X"] and btn8["text"]=="X" and btn9["text"]=="X" or btn1["text"=="X"] and btn4["text"]=="X" and btn7["text"]=="X" or btn2["text"=="X"] and btn5["text"]=="X" and btn8["text"]=="X" or btn3["text"=="X"] and btn6["text"]=="X" and btn9["text"]=="X" or btn1["text"=="X"] and btn5["text"]=="X" and btn9["text"]=="X" or btn3["text"=="X"] and btn5["text"]=="X" and btn7["text"]=="X"):
+    if (btn1["text"]=="X" and btn2["text"]=="X" and btn3["text"]=="X" or btn4["text"]=="X" and btn5["text"]=="X" and btn6["text"]=="X" or btn7["text"]=="X" and btn8["text"]=="X" and btn9["text"]=="X" or btn1["text"]=="X" and btn4["text"]=="X" and btn7["text"]=="X" or btn2["text"]=="X" and btn5["text"]=="X" and btn8["text"]=="X" or btn3["text"]=="X" and btn6["text"]=="X" and btn9["text"]=="X" or btn1["text"]=="X" and btn5["text"]=="X" and btn9["text"]=="X" or btn3["text"]=="X" and btn5["text"]=="X" and btn7["text"]=="X"):
         winner=True
-        messagebox.showinfo("Uzvarētājs ir X")
-    elif (btn1["text"=="O"] and btn2["text"]=="O" and btn3["text"]=="O" or btn4["text"=="O"] and btn5["text"]=="O" and btn6["text"]=="O" or btn7["text"=="O"] and btn8["text"]=="O" and btn9["text"]=="O" or btn1["text"=="O"] and btn4["text"]=="O" and btn7["text"]=="O" or btn2["text"=="O"] and btn5["text"]=="O" and btn8["text"]=="O" or btn3["text"=="O"] and btn6["text"]=="O" and btn9["text"]=="O" or btn1["text"=="O"] and btn5["text"]=="O" and btn9["text"]=="O" or btn3["text"=="O"] and btn5["text"]=="O" and btn7["text"]=="O"):
+        disableButtons()
+        messagebox.showinfo("TicTacToe","Uzvarētājs ir X")
+    elif (btn1["text"]=="O" and btn2["text"]=="O" and btn3["text"]=="O" or btn4["text"]=="O" and btn5["text"]=="O" and btn6["text"]=="O" or btn7["text"]=="O" and btn8["text"]=="O" and btn9["text"]=="O" or btn1["text"]=="O" and btn4["text"]=="O" and btn7["text"]=="O" or btn2["text"]=="O" and btn5["text"]=="O" and btn8["text"]=="O" or btn3["text"]=="O" and btn6["text"]=="O" and btn9["text"]=="O" or btn1["text"]=="O" and btn5["text"]=="O" and btn9["text"]=="O" or btn3["text"]=="O" and btn5["text"]=="O" and btn7["text"]=="O"):
         winner=True
-        messagebox.showinfo("Uzvarētājs ir O")
+        disableButtons()
+        messagebox.showinfo("TicTacToe","Uzvarētājs ir O")
     elif count==9 and winner==False:
-        messagebox.showinfo("Neizšķirts")
+        messagebox.showinfo("TicTacToe","Neizšķirts")
+
+def disableButtons():
+    btn1.config(state=DISABLED)
+    btn2.config(state=DISABLED)
+    btn3.config(state=DISABLED)
+    btn4.config(state=DISABLED)
+    btn5.config(state=DISABLED)
+    btn6.config(state=DISABLED)
+    btn7.config(state=DISABLED)
+    btn8.config(state=DISABLED)
+    btn9.config(state=DISABLED)
+
+def reset():
+    btn1.config(state=NORMAL)
+    btn2.config(state=NORMAL)
+    btn3.config(state=NORMAL)
+    btn4.config(state=NORMAL)
+    btn5.config(state=NORMAL)
+    btn6.config(state=NORMAL)
+    btn7.config(state=NORMAL)
+    btn8.config(state=NORMAL)
+    btn9.config(state=NORMAL)
+    btn1["text"]=""
+    btn2["text"]=""
+    btn3["text"]=""
+    btn4["text"]=""
+    btn5["text"]=""
+    btn6["text"]=""
+    btn7["text"]=""
+    btn8["text"]=""
+    btn9["text"]=""
+    global winner, count, PlayerX
+    winner=False
+    count=0
+    PlayerX=True
+    return 0
+
+
+def infoLogs():
+    newLogs=Toplevel()
+    newLogs.title('info par programmu')
+    newLogs.geometry("300x300")
+    desc=Label(newLogs, text='Spēlētāji pēc kārtas liek savas zīmes tukšajos laukumos. Uzvar tas spēlētājs, kurš pirmais iegūst 3 zīmes pēc kārtas (uz augšu, uz leju, šķērsām vai pa diagonāli).')
+    desc.grid(row=0, column=0)
+    return 0
+
+
+#Lielā izvēlne
+mainIzvelne=Menu(mansLogs)
+mansLogs.config(menu=mainIzvelne)
+
+#Mazā izvēlne
+opcijas=Menu(mainIzvelne, tearoff=False)
+mainIzvelne.add_cascade(label="Opcijas", menu=opcijas)
+
+#Komandas
+opcijas.add_command(label="Jauna Spēle", command=reset)
+opcijas.add_command(label="Iziet", command=mansLogs.quit)
+mainIzvelne.add_command(label="Par Programmu", command=infoLogs)
 
 
 btn1=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), command=lambda:btnClick(btn1))
