@@ -5,17 +5,19 @@ mansLogs.title("TicTacToe")
 
 
 PlayerX=True
-count=0
+count=0      
 
 def btnClick(button): #padod visu pogu
     global PlayerX, count #kādi mainīgie tiks izmantoti visā programmā
     if button["text"]==""and PlayerX==True: #spēlē X spēlētājs
         button["text"]="X" #maina uz X
+        button["foreground"]='#FFFFFF'
         PlayerX=False
         count+=1 #palielina rūtiņu skaitu
         checkWinner()
     elif button["text"]=="" and PlayerX==False:
         button["text"]="O"
+        button["foreground"]='#FFFFFF'
         PlayerX=True
         count+=1
         checkWinner()
@@ -78,9 +80,15 @@ def reset():
 def infoLogs():
     newLogs=Toplevel()
     newLogs.title('info par programmu')
-    newLogs.geometry("300x300")
-    desc=Label(newLogs, text='Spēlētāji pēc kārtas liek savas zīmes tukšajos laukumos. Uzvar tas spēlētājs, kurš pirmais iegūst 3 zīmes pēc kārtas (uz augšu, uz leju, šķērsām vai pa diagonāli).')
+    newLogs.geometry("350x350")
+    desc=Label(newLogs, text='Spēlētāji pēc kārtas liek savas zīmes tukšajos laukumos.')
     desc.grid(row=0, column=0)
+    desc=Label(newLogs, text=" Uzvar tas spēlētājs, kurš pirmais iegūst 3 zīmes pēc kārtas")
+    desc.grid(row=1, column=0)
+    desc=Label(newLogs, text="(uz augšu, uz leju, šķērsām vai pa diagonāli).")
+    desc.grid(row=2, column=0)
+    desc=Label(newLogs, text="ja ir aizpildīti visi lauciņi, tad ir neizšķirts")
+    desc.grid(row=3, column=0)
     return 0
 
 
@@ -98,15 +106,15 @@ opcijas.add_command(label="Iziet", command=mansLogs.quit)
 mainIzvelne.add_command(label="Par Programmu", command=infoLogs)
 
 
-btn1=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), command=lambda:btnClick(btn1))
-btn2=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), command=lambda:btnClick(btn2))
-btn3=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), command=lambda:btnClick(btn3))
-btn4=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), command=lambda:btnClick(btn4))
-btn5=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), command=lambda:btnClick(btn5))
-btn6=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), command=lambda:btnClick(btn6))
-btn7=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), command=lambda:btnClick(btn7))
-btn8=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), command=lambda:btnClick(btn8))
-btn9=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), command=lambda:btnClick(btn9))
+btn1=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), bg='light green', command=lambda:btnClick(btn1))
+btn2=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), bg='green', command=lambda:btnClick(btn2))
+btn3=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), bg='light green', command=lambda:btnClick(btn3))
+btn4=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), bg='green', command=lambda:btnClick(btn4))
+btn5=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), bg='light green', command=lambda:btnClick(btn5))
+btn6=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), bg='green', command=lambda:btnClick(btn6))
+btn7=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), bg='light green', command=lambda:btnClick(btn7))
+btn8=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), bg='green', command=lambda:btnClick(btn8))
+btn9=Button(mansLogs, text="", width=6, height=3, font=("Helvica"), bg='light green', command=lambda:btnClick(btn9))
 
 btn1.grid(column=1, row=1)
 btn2.grid(column=1, row=2)
